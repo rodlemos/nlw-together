@@ -1,32 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Style } from './styles';
-import { Avatar } from '../Avatar';
-import { useAuth } from '../../hooks/auth';
+import { Text, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import { Alert } from 'react-native';
+import { useAuth } from '../../hooks/auth';
+import { Avatar } from '../Avatar';
+import { Style } from './styles';
 
-export function Profile() {
-    const { user, signOut } = useAuth();
+type Props = {
+    openModal: ()=> void;
+}
 
-    function handleSignOut() {
-        Alert.alert('Logout', 'Deseja sair do GamePlay?',
-            [
-                {
-                    text: 'Não',
-                    style: 'cancel'
-                },
-                {
-                    text: 'Sim',
-                    onPress: ()=> signOut()
-                }
-            ]
-        )
-    }
+export function Profile({openModal}:Props) {
+    const { user } = useAuth();
 
     return (
         <View style={Style.container}>
-            <RectButton onPress={handleSignOut}>
+            <RectButton onPress={openModal}>
                 <Avatar urlImage={user.avatar} />
             </RectButton>
             <View>

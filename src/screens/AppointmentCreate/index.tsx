@@ -23,12 +23,12 @@ export default function AppointmentCreate() {
     const [category, setCategory] = useState('1');
     const [openModal, setOpenModal] = useState(false);
     const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
-    
-    const[day, setDay] = useState('');
-    const[month, setMonth] = useState('');
-    const[hours, setHours] = useState('');
-    const[minutes, setMinutes] = useState('');
-    const[description, setDescription] = useState('');
+
+    const [day, setDay] = useState('');
+    const [month, setMonth] = useState('');
+    const [hours, setHours] = useState('');
+    const [minutes, setMinutes] = useState('');
+    const [description, setDescription] = useState('');
 
     const navigation = useNavigation()
 
@@ -61,10 +61,10 @@ export default function AppointmentCreate() {
         const storage = await AsyncStorage.getItem(COLLECTION_APPOINTMENTS);
         const appointments = storage ? JSON.parse(storage) : [];
 
-        await AsyncStorage.setItem(COLLECTION_APPOINTMENTS, 
+        await AsyncStorage.setItem(COLLECTION_APPOINTMENTS,
             JSON.stringify([...appointments, newAppointment]));
-        
-            navigation.navigate('Home');
+
+        navigation.navigate('Home');
     }
 
     return (
@@ -97,9 +97,9 @@ export default function AppointmentCreate() {
                         >
                             <View style={Styles.select}>
                                 {
-                                    guild.icon 
-                                    ? <GuildIcon guildId={guild.id} iconId={guild.icon}/> 
-                                    : <View style={Styles.image} />
+                                    guild.icon
+                                        ? <GuildIcon guildId={guild.id} iconId={guild.icon} />
+                                        : <View style={Styles.image} />
                                 }
                                 <View style={Styles.selectBody}>
                                     <Text style={Styles.label}>
@@ -119,18 +119,18 @@ export default function AppointmentCreate() {
                             <View>
                                 <Text style={[Styles.label, { marginBottom: 5 }]}>Dia e mês </Text>
                                 <View style={Styles.column}>
-                                    <SmallInput maxLength={2} onChangeText={setDay}/>
+                                    <SmallInput maxLength={2} onChangeText={setDay} />
                                     <Text style={Styles.divider}>/</Text>
-                                    <SmallInput maxLength={2} onChangeText={setMonth}/>
+                                    <SmallInput maxLength={2} onChangeText={setMonth} />
                                 </View>
                             </View>
 
                             <View>
                                 <Text style={[Styles.label, { marginBottom: 5 }]}>Hora e minuto </Text>
                                 <View style={Styles.column}>
-                                    <SmallInput maxLength={2} onChangeText={setHours}/>
+                                    <SmallInput maxLength={2} onChangeText={setHours} />
                                     <Text style={Styles.divider}>:</Text>
-                                    <SmallInput maxLength={2} onChangeText={setMinutes}/>
+                                    <SmallInput maxLength={2} onChangeText={setMinutes} />
                                 </View>
                             </View>
                         </View>
@@ -151,7 +151,7 @@ export default function AppointmentCreate() {
                     </View>
 
                     <View style={Styles.footer}>
-                        <Button title="Agendar" onPress={handleSave}/>
+                        <Button title="Agendar" onPress={handleSave} />
                     </View>
                 </ScrollView>
             </Background>
